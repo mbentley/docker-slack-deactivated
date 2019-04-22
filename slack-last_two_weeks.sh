@@ -7,8 +7,12 @@ then
   exit 1
 fi
 
-# find date/time in epoch format 2 weeks ago
-SINCE="$(date -d 'now - 2 weeks' +'%s')"
+# use 2 weeks ago if SINCE isn't provided
+if [ -z "${SINCE}" ]
+then
+  # find date/time in epoch format 2 weeks ago
+  SINCE="$(date -d 'now - 2 weeks' +'%s')"
+fi
 
 # get slack get deactivated users & filter out bots and non-employees
 IFS=$'\n'
